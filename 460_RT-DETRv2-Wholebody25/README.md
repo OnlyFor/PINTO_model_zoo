@@ -6,7 +6,7 @@ This model far surpasses the performance of existing CNNs in both inference spee
 
 Lightweight human detection models generated on high-quality human data sets. It can detect objects with high accuracy and speed in a total of 25 classes: `Body`, `Adult`, `Child`, `Male`, `Female`, `Body_with_Wheelchair`, `Body_with_Crutches`, `Head`, `Front`, `Right_Front`, `Right_Side`, `Right_Back`, `Back`, `Left_Back`, `Left_Side`, `Left_Front`, `Face`, `Eye`, `Nose`, `Mouth`, `Ear`, `Hand`, `Hand_Left`, `Hand_Right`, `Foot`. Even the classification problem is being attempted to be solved by object detection. There is no need to perform any complex affine transformations or other processing for pre-processing and post-processing of input images. In addition, the resistance to Motion Blur, Gaussian noise, contrast noise, backlighting, and halation is quite strong because it was trained only on images with added photometric noise for all images in the MS-COCO subset of the image set. In addition, about half of the image set was annotated by me with the aspect ratio of the original image substantially destroyed. I manually annotated all images in the dataset by myself. The model is intended to use real-world video for inference and has enhanced resistance to all kinds of noise. Probably stronger than any known model. However, the quality of the known data set and my data set are so different that an accurate comparison of accuracy is not possible.
 
-The aim is to estimate head pose direction with minimal computational cost using only an object detection model, with an emphasis on practical aspects. The concept is significantly different from existing full-mesh type head direction estimation models, head direction estimation models with tweaked loss functions, and models that perform precise 360° 6D estimation. Capturing the features of every part of the body on a 2D surface makes it very easy to combine with other feature extraction processes. In experimental trials, the model was trained to only estimate eight Yaw directions, but I plan to add the ability to estimate five Pitch directions in the future.
+The aim is to estimate head pose direction with minimal computational cost using only an object detection model, with an emphasis on practical aspects. The concept is significantly different from existing full-mesh type head direction estimation models, head direction estimation models with tweaked loss functions, and models that perform precise 360° 6D estimation. Capturing the features of every part of the body on a 2D surface makes it very easy to combine with other feature extraction processes.
 
 Don't be ruled by the curse of mAP.
 
@@ -31,6 +31,7 @@ Don't be ruled by the curse of mAP.
 |![image](https://github.com/user-attachments/assets/0063bdd0-1317-40e5-b44b-dd01468436c2)|![image](https://github.com/user-attachments/assets/c9ea9f7c-e0db-4884-9734-dc6b79db5d05)|
 |![image](https://github.com/user-attachments/assets/70c57a45-a8ce-47dc-9bdd-6cca10d1b16a)|![image](https://github.com/user-attachments/assets/19aefce8-61d7-4294-bf3d-865529cae228)|
 |![image](https://github.com/user-attachments/assets/258805da-6578-4b05-b3d9-67850a027a03)|![image](https://github.com/user-attachments/assets/5114a254-f410-4db7-a61c-2391b8ccfbfb)|
+|![image](https://github.com/user-attachments/assets/a2629dd0-73f3-4115-a198-32562b206a7a)|![image](https://github.com/user-attachments/assets/e4c4bd6d-dc33-4d44-9be1-55c57a113ad3)|
 
 The use of [CD-COCO: Complex Distorted COCO database for Scene-Context-Aware computer vision](https://github.com/aymanbegh/cd-coco) has also greatly improved resistance to various types of noise.
 
@@ -133,7 +134,8 @@ The use of [CD-COCO: Complex Distorted COCO database for Scene-Context-Aware com
       [-dgm] \
       [-dlr] \
       [-dhm] \
-      [-oyt]
+      [-oyt] \
+      [-bblw]
 
     options:
       -h, --help
@@ -174,6 +176,8 @@ The use of [CD-COCO: Complex Distorted COCO database for Scene-Context-Aware com
         (Press P on the keyboard to switch modes)
       -oyt, --output_yolo_format_text
         Output YOLO format texts and images.
+      -bblw BOUNDING_BOX_LINE_WIDTH, --bounding_box_line_width BOUNDING_BOX_LINE_WIDTH
+        Bounding box line width.
     ```
 
 - RT-DETRv2-Wholebody25 - S (rtdetrv2_r18vd_120e_wholebody25) - 1,250 query
